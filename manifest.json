@@ -1,10 +1,23 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "manifest_version": 2,
+  "name": "Brainrot Killer",
   "version": "1.0",
-  "manifest_version": 3,
-  "action": {
-    "default_popup": "hello.html",
-    "default_icon": "prac1.png"
+  "description": "A Chrome extension to help reduce brainrot by only allowing videos from specified YouTube channels",
+  "permissions": ["activeTab", "https://www.youtube.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["backgroundScript.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "storage": {
+    "local": ["allowedChannels"]
   }
 }
